@@ -52,3 +52,27 @@ const importData = async () => {
 };
 
 importData();
+
+
+// import mongoose from "mongoose";
+// import dotenv from "dotenv";
+// import Product from "./models/productModel.js";
+
+// dotenv.config();
+
+// const products = [
+//     { name: "iPhone 15", price: 1200, description: "Latest iPhone model", brand: "Apple", category: "Phones" },
+//     { name: "Samsung Galaxy S24", price: 1000, description: "Flagship Samsung phone", brand: "Samsung", category: "Phones" },
+// ];
+
+// mongoose.connect(process.env.MONGO_URI)
+//     .then(async () => {
+//         await Product.deleteMany();
+//         await Product.insertMany(products);
+//         console.log("✅ Data seeded successfully");
+//         process.exit();
+//     })
+//     .catch((err) => {
+//         console.error(err);
+//         process.exit(1);
+//     });
