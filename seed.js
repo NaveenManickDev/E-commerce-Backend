@@ -56,23 +56,52 @@
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Product from "./models/productModel.js";
+import Product from "./models/Product.js";
 
 dotenv.config();
 
+// Sample products to seed
 const products = [
-    { name: "iPhone 15", price: 1200, description: "Latest iPhone model", brand: "Apple", category: "Phones" },
-    { name: "Samsung Galaxy S24", price: 1000, description: "Flagship Samsung phone", brand: "Samsung", category: "Phones" },
+    {
+        name: "iPhone 15",
+        price: 1200,
+        description: "Latest iPhone model",
+        brand: "Apple",
+        category: "Phones",
+    },
+    {
+        name: "Samsung Galaxy S24",
+        price: 1000,
+        description: "Flagship Samsung phone",
+        brand: "Samsung",
+        category: "Phones",
+    },
 ];
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(async () => {
+// Connect to MongoDB and seed data
+const seedProducts = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("🔗 MongoDB connected");
+
+        // Clear existing products
         await Product.deleteMany();
+        console.log("🗑️ Existing products cleared");
+
+        // Insert sample products
         await Product.insertMany(products);
-        console.log("✅ Data seeded successfully");
+        console.log("✅ Products seeded successfully");
+
         process.exit();
-    })
-    .catch((err) => {
-        console.error(err);
+    } catch (err) {
+        console.error("❌ Error seeding data:", err);
         process.exit(1);
-    });
+    }
+};
+
+// Run the seeder
+seedProducts();
+
