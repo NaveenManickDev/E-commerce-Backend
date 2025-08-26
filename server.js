@@ -13,7 +13,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:5173", "https://e-commerce-swart-chi.vercel.app/products"],// Allow all origins for deployment (or replace with your frontend URL)
+    origin: ["http://localhost:5173", "https://e-commerce-swart-chi.vercel.app"],// Allow all origins for deployment (or replace with your frontend URL)
     credentials: true,
 }));
 app.use(morgan("dev"));
